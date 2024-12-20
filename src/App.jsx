@@ -1,13 +1,13 @@
 import React from 'react'
 import { Weather } from './components/Weather'
+import { Forecast } from './components/Forecast'
+
 
 function App() {
   return (
-    <div className='p-24'>
-      <h1 className='text-3xl m-5 text-left'>
-        Bienvenue dans votre espace Météo
-      </h1>
-      <Weather />
+    <div className='px-24 py-16 bg-black/90'>
+        <Weather />
+        <Forecast />
     </div>
 
   )

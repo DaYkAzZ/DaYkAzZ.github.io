@@ -1,37 +1,21 @@
 import { use, useState } from "react";
+import { fetchWeather } from '../utils/weatherAPI';
 
 export function Weather() {
     const [city, setCity] = useState('');
     const [weather, setWeather] = useState(null);
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
 
-    const fetchWeather = async () => {
-
-        if (!city) {
-            setError('Veuillez entrer une ville');
-            return;
-        }
-
-        setError(null);
-
+    const handleFetchWeather = async () => {
         try {
-            const response = await fetch(
-                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c341ae4458e9185686adc0eea5614d08&units=metric`
-            );
-
-            if (!response.ok) {
-                throw new Error('Ville non trouvée')
-            }
-
-            const data = await response.json();
+            const data = await fetchWeather(city);
             setWeather(data);
-
-        } catch (error) {
-            setError(error.message)
+            setError(null);
+        } catch (err) {
+            setError(err.message);
         }
-
-
     };
+
 
     const weatherImg = {
         clear: {
@@ -51,8 +35,27 @@ export function Weather() {
         }
     }
 
+    let iconClass = '';
+
     if (weather) {
-        console.log(weather)
+        console.log('Weather', weather)
+
+        let time = weather.weather[0].main;
+
+        function chooseTimeIcon(time) {
+            if (time === 'Clouds') {
+                iconClass = weatherImg.cloudy.class;
+            } else if (time === 'Rain') {
+                iconClass = weatherImg.rainy.class;
+            } else if (time === 'Sun' || time === 'Sunny') {
+                iconClass = weatherImg.clear.class;
+            } else {
+                iconClass = weatherImg.cloudSunny.class;
+            }
+        }
+
+        chooseTimeIcon(time)
+
     } else {
         console.log('Cannot read Weather')
     }
@@ -63,41 +66,52 @@ export function Weather() {
                 <span className="p-5 bg-red-500 text-white rounded-lg m-5 shadow-lg font-bold" style={{
                     display: error ? 'block' : 'none'
                 }}>{error}</span>
-                <h3>Choisissez une ville</h3>
+                <h3 className="text-white">Choisissez une ville</h3>
                 <div className="flex items-center">
-                    <input className="shadow-lg border border-gray-300 m-10 w-fit p-4 rounded-lg" type="text" placeholder="Entrez une ville" value={city} onChange={(e) => {
+                    <input className="shadow-lg border border-gray-300 my-10 mx-2 w-fit p-4 rounded-lg" type="text" placeholder="Entrez une ville" value={city} onChange={(e) => {
                         setCity(e.target.value)
                     }} />
-                    <button className="bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg m-2 bg-black p-2 text-white" onClick={fetchWeather}>
+                    <button className="bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full m-2 bg-black p-4 text-white" onClick={handleFetchWeather}>
                         Rechercher
                     </button>
                 </div>
             </div>
 
             {weather && weather.main && (
-                <div className="text-white p-20 flex flex-col justify-center rounded-lg shadow-lg w-{300px} bg-gradient-to-r from-sky-500 to-indigo-500">
-                    <h2 className="text-6xl font-bold mb-3">{weather.name}
-                        <span className="font-normal" style={{
-                            color: weather.main.temp > 25 ? 'red' : 'blue'
-                        }}> {weather.main.temp}°C</span>
-                    </h2>
-                    <div className="flex justify-between">
-                        <div className="p-10 flex flex-col justify-center items-center">
+                <div className="text-white p-20 flex flex-col justify-between rounded-lg shadow-lg w-2/3 bg-gradient-to-b from-sky-500 to-indigo-500">
+                    <div className="flex justify-between items-center">
+                        <h2 className="text-6xl font-bold mb-3">{weather.name}, Aujourd'hui
+                            <br /><br />    <span className="font-bold" style={{
+                                color: weather.main.temp > 25 ? 'red' : 'blue',
+                            }}> {weather.main.temp}°C</span>
+                        </h2>
+                        <i className={iconClass}></i>
+                    </div>
+                    <div className="flex justify-around">
+                        <div className="m-5 flex flex-col w-1/3">
                             <h3 className="text-4xl font-bold">
                                 <i className="m-3 fa-solid fa-wind"></i>
-                                Vent
                             </h3>
-                            <span> {weather.wind.speed} km/h</span>
-                            <span> {weather.wind.deg}°</span>
+                            <span> Vitesse du vent : {weather.wind.speed} km/h</span>
+                            <span> Orientation du vent : {weather.wind.deg}°</span>
                         </div>
-                        <div className="p-10 flex flex-col justify-center items-center">
+                        <div className="m-5 flex flex-col w-1/3">
                             <h3 className="text-4xl font-bold">
-                                Temps
+                                <i class="m-3 fa-solid fa-bolt"></i>
                             </h3>
                             <span> {weather.weather[0].main} </span>
                             <span> Ressentie : {weather.main.feels_like} °C</span>
+                            <span> Répartition des nuages dans l'air : {weather.clouds.all} %</span>
                         </div>
-                        <i className={weather.weather[0].main === 'Clouds' ? weatherImg.cloudy.class : weatherImg.clear.class}></i>
+                        <div className="m-5 flex flex-col w-1/3">
+                            <h3 className="text-4xl font-bold">
+                                <i class="m-3 fa-solid fa-earth-americas"></i>
+                            </h3>
+                            <span> Humidité dans l'air : {weather.main.humidity} %</span>
+                            <span> Pression de l'air : {weather.main.pressure} Bar</span>
+                            <span> Température maximale : {weather.main.temp_max} °C</span>
+                            <span> Température minimale : {weather.main.temp_min} °C</span>
+                        </div>
                     </div>
                 </div>
             )}

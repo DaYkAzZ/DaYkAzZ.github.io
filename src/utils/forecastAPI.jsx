@@ -1,0 +1,1 @@
+// put the open meteo api here and export it to forecast . jsx
