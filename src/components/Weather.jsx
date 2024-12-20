@@ -24,28 +24,34 @@ export function Weather() {
             }
 
             const data = await response.json();
-            setWeather(data);   
+            setWeather(data);
 
         } catch (error) {
             setError(error.message)
         }
 
-        
+
     };
 
     const weatherImg = {
-        clear : {
-            class: 'fa-solid fa-sun'
+        clear: {
+            class: 'text-9xl m-3 fa-solid fa-sun'
         },
         cloudy: {
-            class: 'fa-solid fa-cloud-sun'
+            class: 'text-9xl m-3 fa-solid fa-cloud'
+        },
+        cloudSunny: {
+            class: 'text-9xl m-3 fa-solid fa-cloud-sun'
         },
         rainy: {
-            class: 'fa-solid fa-cloud-rain'
+            class: 'text-9xl m-3 fa-solid fa-cloud-rain'
+        },
+        dust: {
+            class: 'text-9xl m-3 fa-regular fa-sun-dust'
         }
     }
 
-    if(weather) {
+    if (weather) {
         console.log(weather)
     } else {
         console.log('Cannot read Weather')
@@ -59,7 +65,7 @@ export function Weather() {
                 }}>{error}</span>
                 <h3>Choisissez une ville</h3>
                 <div className="flex items-center">
-                    <input className="shadow-lg w-fit p-4 rounded-lg" type="text" placeholder="Entrez une ville" value={city} onChange={(e) => {
+                    <input className="shadow-lg border border-gray-300 m-10 w-fit p-4 rounded-lg" type="text" placeholder="Entrez une ville" value={city} onChange={(e) => {
                         setCity(e.target.value)
                     }} />
                     <button className="bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg m-2 bg-black p-2 text-white" onClick={fetchWeather}>
@@ -75,21 +81,23 @@ export function Weather() {
                             color: weather.main.temp > 25 ? 'red' : 'blue'
                         }}> {weather.main.temp}°C</span>
                     </h2>
-                    <div className="p-10 flex flex-col justify-center items-center">
-                        <h3 className="text-4xl font-bold">
-                            <i className="m-3 fa-solid fa-wind"></i>
-                            Vent
-                        </h3>
-                        <span> {weather.wind.speed} km/h</span>
-                        <span> {weather.wind.deg}°</span>
-                    </div>
-                    <div className="p-10 flex flex-col justify-center items-center">
-                        <h3 className="text-4xl font-bold">
-                            Temps
-                            <i className={weather.weather[0].main === 'Clouds' ? weatherImg.cloudy : weatherImg.clear}></i>
-                        </h3>
-                        <span> {weather.weather[0].main} </span>
-                        <span> {weather.weather[0].description} </span>
+                    <div className="flex justify-between">
+                        <div className="p-10 flex flex-col justify-center items-center">
+                            <h3 className="text-4xl font-bold">
+                                <i className="m-3 fa-solid fa-wind"></i>
+                                Vent
+                            </h3>
+                            <span> {weather.wind.speed} km/h</span>
+                            <span> {weather.wind.deg}°</span>
+                        </div>
+                        <div className="p-10 flex flex-col justify-center items-center">
+                            <h3 className="text-4xl font-bold">
+                                Temps
+                            </h3>
+                            <span> {weather.weather[0].main} </span>
+                            <span> Ressentie : {weather.main.feels_like} °C</span>
+                        </div>
+                        <i className={weather.weather[0].main === 'Clouds' ? weatherImg.cloudy.class : weatherImg.clear.class}></i>
                     </div>
                 </div>
             )}
