@@ -1,10 +1,40 @@
-# React + Vite
+# WeatherApp Using React, Vite, Tailwind, OpenMeteo & OpenWeather API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-Currently, two official plugins are available:
+## Introduction
+WeatherApp is a simple and intuitive weather application built using React, Vite, Tailwind CSS, and integrates with OpenMeteo and OpenWeather APIs to provide accurate and up-to-date weather information.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- Current weather information
+- 3-day weather forecast
+- Search for weather by city
 
-React App using open meteo and open weather API to get weather and forecast from any cities in the world
+## Installation
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/weatherapp.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd weatherapp
+    ```
+3. Install the dependencies:
+    ```sh
+    npm install
+    ```
+
+## Usage
+1. Start the development server:
+    ```sh
+    npm run dev
+    ```
+2. Open your browser and navigate to `http://localhost:5173` to see the application in action.
+
+Dayka - 2025
