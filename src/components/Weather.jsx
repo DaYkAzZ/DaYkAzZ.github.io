@@ -55,8 +55,6 @@ export function Weather({ setCity }) {
 
         chooseTimeIcon(time)
 
-    } else {
-        console.log('Cannot read Weather')
     }
 
     return (
@@ -80,7 +78,7 @@ export function Weather({ setCity }) {
                     <div className="flex justify-between items-center">
                         <h2 className="text-5xl font-bold mb-3">{weather.name}, Aujourd'hui
                             <br /><br />    <span className="font-bold" style={{
-                                color: weather.main.temp > 25 ? 'red' : 'blue',
+                                color: weather.main.temp > 20 ? 'red' : 'blue',
                             }}> {weather.main.temp}°C</span>
                         </h2>
                         <i className={iconClass}></i>
@@ -90,25 +88,25 @@ export function Weather({ setCity }) {
                             <h3 className="text-4xl font-bold">
                                 <i className="m-3 fa-solid fa-wind"></i>
                             </h3>
-                            <span> <i class="fa-solid fa-gauge"></i> : {weather.wind.speed} km/h</span>
-                            <span> <i class="fa-solid fa-diamond-turn-right"></i> : {weather.wind.deg}°</span>
+                            <span> <i className="fa-solid fa-gauge"></i> : {weather.wind.speed} km/h</span>
+                            <span> <i className="fa-solid fa-diamond-turn-right"></i> : {weather.wind.deg}°</span>
                         </div>
                         <div className="m-3 flex flex-col text-sm">
                             <h3 className="text-4xl font-bold">
                                 <i className="m-3 fa-solid fa-bolt"></i>
                             </h3>
                             <span> {weather.weather[0].main} </span>
-                            <span> <i class="fa-solid fa-user"></i> : {weather.main.feels_like} °C</span>
-                            <span> <i class="fa-solid fa-cloud"></i> : {weather.clouds.all} %</span>
+                            <span> <i className="fa-solid fa-user"></i> : {weather.main.feels_like} °C</span>
+                            <span> <i className="fa-solid fa-cloud"></i> : {weather.clouds.all} %</span>
                         </div>
                         <div className="m-3 flex flex-col text-sm">
                             <h3 className="text-4xl font-bold">
                                 <i className="m-3 fa-solid fa-earth-americas"></i>
                             </h3>
-                            <span> <i class="fa-solid fa-water"></i> : {weather.main.humidity} %</span>
-                            <span> <i class="fa-solid fa-compress"></i> : {weather.main.pressure} Bar</span>
-                            <span> <i class="fa-solid fa-temperature-high"></i> : {weather.main.temp_max} °C</span>
-                            <span> <i class="fa-solid fa-temperature-low"></i> : {weather.main.temp_min} °C</span>
+                            <span> <i className="fa-solid fa-water"></i> : {weather.main.humidity} %</span>
+                            <span> <i className="fa-solid fa-compress"></i> : {weather.main.pressure} Bar</span>
+                            <span> <i className="fa-solid fa-temperature-high"></i> : {weather.main.temp_max} °C</span>
+                            <span> <i className="fa-solid fa-temperature-low"></i> : {weather.main.temp_min} °C</span>
                         </div>
                     </div>
                 </div>
