@@ -12,7 +12,7 @@ export function Weather({ setCity }) {
             setWeather(data);
             setError(null);
             setCity(inputCity);
-            
+
         } catch (err) {
             setError(err.message);
         }
@@ -59,7 +59,7 @@ export function Weather({ setCity }) {
 
     return (
         <div>
-            <div className="flex flex-col justify-center items-center">
+            <div>
                 <span className="p-5 bg-red-500 text-white rounded-lg m-5 shadow-lg font-bold" style={{
                     display: error ? 'block' : 'none'
                 }}>{error}</span>
@@ -74,14 +74,19 @@ export function Weather({ setCity }) {
                 </div>
             </div>
             {weather && weather.main && (
-                <div className="text-white p-10 m-5 flex flex-col justify-between rounded-lg shadow-lg bg-gradient-to-b from-sky-500 to-indigo-500">
-                    <div className="flex justify-between items-center">
-                        <h2 className="text-5xl font-bold mb-3">{weather.name}, Aujourd'hui
-                            <br /><br />    <span className="font-bold" style={{
-                                color: weather.main.temp > 20 ? 'red' : 'blue',
-                            }}> {weather.main.temp}°C</span>
-                        </h2>
-                        <i className={iconClass}></i>
+                <div className="text-white p-10 m-5 w-full flex flex-col justify-between rounded-lg shadow-lg bg-gradient-to-b from-sky-500 to-indigo-500">
+                    <div className="flex flex-row justify-between items-center">
+                        <div>
+                            <h2 className="text-4xl font-bold mb-3">{weather.name}, Aujourd'hui
+                                <br />
+                                <span className="font-bold" style={{
+                                    color: weather.main.temp > 20 ? 'red' : 'cyan',
+                                }}> {weather.main.temp}°C</span>
+                            </h2>
+                        </div>
+                        <div>
+                            <i className={iconClass}></i>
+                        </div>
                     </div>
                     <div className="flex justify-between">
                         <div className="m-3 flex flex-col text-sm">
