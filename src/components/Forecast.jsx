@@ -50,7 +50,10 @@ export function Forecast({ city }) {
             iconClass = 'text-7xl m-2 fa-solid fa-cloud-rain';
             return 'Thunderstorm';
         }
+        console.log(iconClass);
+        
     }
+    const weather = getWeather(forecast)
     return (
         <div className="text-white p-10 m-5 flex flex-col justify-between rounded-lg shadow-lg w-2/3 bg-gradient-to-b from-sky-500 to-indigo-500">
             {error && <span className="p-5 bg-red-500 text-white rounded-lg m-5 shadow-lg font-bold">{error}</span>}
@@ -64,10 +67,11 @@ export function Forecast({ city }) {
                     <i className={iconClass}></i>
                     <div>
                         <span>
-                            {getWeather(forecast)}
+                            {weather}
                         </span>
                     </div>
                 </div>
+                // ajouter les 3 prochains jours
             )}
         </div>
     );
