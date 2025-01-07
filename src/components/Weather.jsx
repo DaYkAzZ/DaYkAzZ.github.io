@@ -1,5 +1,5 @@
 import { use, useState } from "react";
-import { fetchWeather } from '../utils/weatherAPI';
+import { fetchWeather } from '../api/fetchWeather';
 
 export function Weather({ setCity }) {
     const [inputCity, setInputCity] = useState('');
@@ -12,7 +12,6 @@ export function Weather({ setCity }) {
             setWeather(data);
             setError(null);
             setCity(inputCity);
-
         } catch (err) {
             setError(err.message);
         }
@@ -56,6 +55,7 @@ export function Weather({ setCity }) {
         chooseTimeIcon(time)
 
     }
+    
 
     return (
         <div>

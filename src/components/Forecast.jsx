@@ -1,4 +1,4 @@
-import { fetchForecast } from '../utils/forecastAPI';
+import { fetchForecast } from '../api/fetchForecast';
 import { useState, useEffect } from 'react';
 
 export function Forecast({ city, day, forecastDay }) {

@@ -1,3 +1,7 @@
+export let coords = null;
+export let lat = null;
+export let lon = null;
+
 export const fetchWeather = async (city) => {
     if (!city) {
         throw new Error('Veuillez entrer une ville');
@@ -13,7 +17,12 @@ export const fetchWeather = async (city) => {
         }
 
         const data = await response.json();
+        coords = data.coord;
+        lat = coords.lat;
+        lon = coords.lon;
+        console.log("Lat : ", lat, "| Lon : ", lon);
         return data;
+
     } catch (error) {
         throw new Error(error.message);
     }
