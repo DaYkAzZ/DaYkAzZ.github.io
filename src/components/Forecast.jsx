@@ -80,7 +80,7 @@ export function Forecast({ city, day, forecastDay }) {
                                 <h3 className="text-4xl font-bold">
                                     <i className="m-3 fa-solid fa-wind"></i>
                                 </h3>
-                                <span> <i className="fa-solid fa-gauge"></i> : {forecast.daily.wind_speed_10m_max[day]} km/h</span>
+                                <span> <i className="fa-solid fa-gauge"></i> Windspeed : {forecast.daily.wind_speed_10m_max[day]} km/h</span>
                             </div>
                             <div className="m-3 flex flex-col text-sm">
                                 <h3 className="text-4xl font-bold">

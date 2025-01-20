@@ -10,9 +10,10 @@ const Searcher = () => {
         try {
             // Récupère les coordonnées
             const { lat, lon } = await fetchWeather(city);
+            console.log(`Coordinates for ${city}: lat=${lat}, lon=${lon}`);
 
             // Récupère les prévisions météo
-            const weatherForecast = await fetchForecast(lat, lon);
+            const weatherForecast = await fetchForecast({ lat, lon });
 
             setForecast(weatherForecast); // Stocke les prévisions
         } catch (error) {

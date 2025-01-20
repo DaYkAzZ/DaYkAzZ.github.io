@@ -19,11 +19,11 @@ WeatherApp is a simple and intuitive weather application built using React, Vite
 ## Installation
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/WeatherAPI-React-App.git
+    git clone https://github.com/DaYkaZz/WeatherAPI-React-App.git
     ```
 2. Navigate to the project directory:
     ```sh
-    cd weatherapp
+    cd my-project
     ```
 3. Install the dependencies:
     ```sh
