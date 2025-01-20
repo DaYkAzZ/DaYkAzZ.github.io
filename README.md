@@ -5,8 +5,6 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 WeatherApp is a simple and intuitive weather application built using React, Vite, Tailwind CSS, and integrates with OpenMeteo and OpenWeather APIs to provide accurate and up-to-date weather information.
